@@ -1,0 +1,8 @@
+# The founder reviews changes across the product.
+* @GevKishmishyan
+
+# These areas carry additional production or security risk.
+/.github/ @GevKishmishyan
+/supabase/migrations/ @GevKishmishyan
+/apps/web/src/app/api/ @GevKishmishyan
+/apps/web/src/lib/supabase/ @GevKishmishyan

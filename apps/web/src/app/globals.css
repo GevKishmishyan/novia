@@ -1,0 +1,104 @@
+@import "tailwindcss";
+
+@font-face { font-family: "Novia Vrdznagir"; src: url("/fonts/armenian/Vrdznagir.otf") format("opentype"); font-display: swap; font-style: normal; font-weight: 400; }
+@font-face { font-family: "Novia Tumanian"; src: url("/fonts/armenian/ArTar_TumanianDzeragir_U.ttf") format("truetype"); font-display: swap; font-style: normal; font-weight: 400; }
+@font-face { font-family: "Novia Gayane"; src: url("/fonts/armenian/GAA_Gayane_Reg.otf") format("opentype"); font-display: swap; font-style: normal; font-weight: 400; }
+@font-face { font-family: "Novia Grapalat"; src: url("/fonts/armenian/GHEAGrpalatReg.otf") format("opentype"); font-display: swap; font-style: normal; font-weight: 400; }
+@font-face { font-family: "Novia Amar"; src: url("/fonts/armenian/Amar.ttf") format("truetype"); font-display: swap; font-style: normal; font-weight: 400; }
+@font-face { font-family: "Novia Emin"; src: url("/fonts/armenian/Emin_Script.ttf") format("truetype"); font-display: swap; font-style: normal; font-weight: 400; }
+@font-face { font-family: "Novia Poqrik"; src: url("/fonts/armenian/poqrik.ttf") format("truetype"); font-display: swap; font-style: normal; font-weight: 400; }
+@font-face { font-family: "Novia Bubble"; src: url("/fonts/armenian/Bubble Sans 1.01.otf") format("opentype"); font-display: swap; font-style: normal; font-weight: 400; }
+@font-face { font-family: "Novia Mandy"; src: url("/fonts/armenian/MandysSketchExtended.ttf") format("truetype"); font-display: swap; font-style: normal; font-weight: 400; }
+@font-face { font-family: "Novia Faulmann"; src: url("/fonts/armenian/FaulmannFont.ttf") format("truetype"); font-display: swap; font-style: normal; font-weight: 400; }
+@font-face { font-family: "Novia Arti"; src: url("/fonts/armenian/Arti Regular.otf") format("opentype"); font-display: swap; font-style: normal; font-weight: 400; }
+@font-face { font-family: "Novia Dzeragir"; src: url("/fonts/armenian/Dzeragir-Handdrawn.otf") format("opentype"); font-display: swap; font-style: normal; font-weight: 400; }
+@font-face { font-family: "Novia Miami"; src: url("/fonts/armenian/miamiwriting.ttf") format("truetype"); font-display: swap; font-style: normal; font-weight: 400; }
+@font-face { font-family: "Novia Mahacu"; src: url("/fonts/armenian/Mahacu-Regular.ttf") format("truetype"); font-display: swap; font-style: normal; font-weight: 400; }
+@font-face { font-family: "Novia Xarrovv"; src: url("/fonts/armenian/Xarrovv.otf") format("opentype"); font-display: swap; font-style: normal; font-weight: 400; }
+
+@theme inline {
+  --color-parchment: #e7ddcc;
+  --color-forest: #173525;
+  --color-forest-soft: #254a35;
+  --color-taupe: #6b645a;
+  --color-warm-white: #fbf9f4;
+  --color-sage: #a8b9a7;
+  --color-terracotta: #b96f52;
+  --color-gold: #b49a63;
+  --font-display: "Iowan Old Style", "Baskerville", "Times New Roman", serif;
+  --font-sans: "Avenir Next", "Segoe UI", Arial, sans-serif;
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+body { margin: 0; background: var(--color-warm-white); color: var(--color-forest); font-family: var(--font-sans); }
+a { text-decoration: none; }
+.shell { width: min(1180px, calc(100% - 2rem)); margin-inline: auto; }
+@media (min-width: 768px) { .shell { width: min(1180px, calc(100% - 4rem)); } }
+
+::selection { background: var(--color-parchment); color: var(--color-forest); }
+
+.auth-input { min-height: 3rem; width: 100%; border-radius: .75rem; border: 1px solid color-mix(in srgb, var(--color-forest) 18%, transparent); background: transparent; padding: .7rem 1rem; color: var(--color-forest); outline: none; transition: border-color .2s, box-shadow .2s; }
+.auth-input:focus { border-color: var(--color-forest); box-shadow: 0 0 0 3px color-mix(in srgb, var(--color-forest) 10%, transparent); }
+.editor-input { min-height: 2.75rem; width: 100%; border-radius: .7rem; border: 1px solid color-mix(in srgb, var(--color-forest) 16%, transparent); background: var(--color-warm-white); padding: .65rem .8rem; color: var(--color-forest); font: inherit; font-weight: 400; outline: none; }
+.editor-input:focus { border-color: var(--color-forest); box-shadow: 0 0 0 3px color-mix(in srgb, var(--color-forest) 8%, transparent); }
+.invitation-font-editorial { font-family: var(--font-noto-sans-armenian), sans-serif; }
+.invitation-font-editorial .font-display { font-family: var(--font-noto-serif-armenian), serif; }
+.invitation-font-serif, .invitation-font-serif .font-display { font-family: var(--font-noto-serif-armenian), serif; }
+.invitation-font-sans, .invitation-font-sans .font-display { font-family: var(--font-noto-sans-armenian), sans-serif; }
+.invitation-font-handjet, .invitation-font-handjet .font-display { font-family: var(--font-handjet), sans-serif; }
+.invitation-font-iosevka, .invitation-font-iosevka .font-display { font-family: var(--font-iosevka-charon), sans-serif; }
+.invitation-font-vrdznagir, .invitation-font-vrdznagir .font-display { font-family: "Novia Vrdznagir", var(--font-noto-serif-armenian), serif; }
+.invitation-font-tumanian, .invitation-font-tumanian .font-display { font-family: "Novia Tumanian", var(--font-noto-serif-armenian), serif; }
+.invitation-font-gayane, .invitation-font-gayane .font-display { font-family: "Novia Gayane", var(--font-noto-sans-armenian), sans-serif; }
+.invitation-font-grapalat, .invitation-font-grapalat .font-display { font-family: "Novia Grapalat", var(--font-noto-sans-armenian), sans-serif; }
+.invitation-font-amar, .invitation-font-amar .font-display { font-family: "Novia Amar", var(--font-noto-sans-armenian), sans-serif; }
+.invitation-font-emin, .invitation-font-emin .font-display { font-family: "Novia Emin", var(--font-noto-serif-armenian), serif; }
+.invitation-font-poqrik, .invitation-font-poqrik .font-display { font-family: "Novia Poqrik", var(--font-noto-serif-armenian), serif; }
+.invitation-font-bubble, .invitation-font-bubble .font-display { font-family: "Novia Bubble", var(--font-noto-sans-armenian), sans-serif; }
+.invitation-font-mandy, .invitation-font-mandy .font-display { font-family: "Novia Mandy", var(--font-noto-serif-armenian), serif; }
+.invitation-font-faulmann, .invitation-font-faulmann .font-display { font-family: "Novia Faulmann", var(--font-noto-serif-armenian), serif; }
+.invitation-font-arti, .invitation-font-arti .font-display { font-family: "Novia Arti", var(--font-noto-serif-armenian), serif; }
+.invitation-font-dzeragir, .invitation-font-dzeragir .font-display { font-family: "Novia Dzeragir", var(--font-noto-serif-armenian), serif; }
+.invitation-font-miami, .invitation-font-miami .font-display { font-family: "Novia Miami", var(--font-noto-serif-armenian), serif; }
+.invitation-font-mahacu, .invitation-font-mahacu .font-display { font-family: "Novia Mahacu", var(--font-noto-serif-armenian), serif; }
+.invitation-font-xarrovv, .invitation-font-xarrovv .font-display { font-family: "Novia Xarrovv", var(--font-noto-serif-armenian), serif; }
+.invitation-font-alex-brush, .invitation-font-alex-brush .font-display { font-family: var(--font-alex-brush), var(--font-noto-serif-armenian), cursive; }
+.invitation-font-allura, .invitation-font-allura .font-display { font-family: var(--font-allura), var(--font-noto-serif-armenian), cursive; }
+.invitation-font-bodoni, .invitation-font-bodoni .font-display { font-family: var(--font-bodoni-moda), var(--font-noto-serif-armenian), serif; }
+.invitation-font-cinzel, .invitation-font-cinzel .font-display { font-family: var(--font-cinzel), var(--font-noto-serif-armenian), serif; }
+.invitation-font-cormorant, .invitation-font-cormorant .font-display { font-family: var(--font-cormorant), var(--font-noto-serif-armenian), serif; }
+.invitation-font-great-vibes, .invitation-font-great-vibes .font-display { font-family: var(--font-great-vibes), var(--font-noto-serif-armenian), cursive; }
+.invitation-font-marcellus, .invitation-font-marcellus .font-display { font-family: var(--font-marcellus), var(--font-noto-serif-armenian), serif; }
+.invitation-font-parisienne, .invitation-font-parisienne .font-display { font-family: var(--font-parisienne), var(--font-noto-serif-armenian), cursive; }
+.invitation-font-playfair, .invitation-font-playfair .font-display { font-family: var(--font-playfair), var(--font-noto-serif-armenian), serif; }
+.invitation-font-sacramento, .invitation-font-sacramento .font-display { font-family: var(--font-sacramento), var(--font-noto-serif-armenian), cursive; }
+.invitation-text-serif { font-family: var(--font-noto-serif-armenian), serif !important; }
+.invitation-text-sans { font-family: var(--font-noto-sans-armenian), sans-serif !important; }
+.invitation-text-handjet { font-family: var(--font-handjet), sans-serif !important; }
+.invitation-text-iosevka { font-family: var(--font-iosevka-charon), sans-serif !important; }
+.invitation-text-vrdznagir { font-family: "Novia Vrdznagir", var(--font-noto-serif-armenian), serif !important; }
+.invitation-text-tumanian { font-family: "Novia Tumanian", var(--font-noto-serif-armenian), serif !important; }
+.invitation-text-gayane { font-family: "Novia Gayane", var(--font-noto-sans-armenian), sans-serif !important; }
+.invitation-text-grapalat { font-family: "Novia Grapalat", var(--font-noto-sans-armenian), sans-serif !important; }
+.invitation-text-amar { font-family: "Novia Amar", var(--font-noto-sans-armenian), sans-serif !important; }
+.invitation-text-emin { font-family: "Novia Emin", var(--font-noto-serif-armenian), serif !important; }
+.invitation-text-poqrik { font-family: "Novia Poqrik", var(--font-noto-serif-armenian), serif !important; }
+.invitation-text-bubble { font-family: "Novia Bubble", var(--font-noto-sans-armenian), sans-serif !important; }
+.invitation-text-mandy { font-family: "Novia Mandy", var(--font-noto-serif-armenian), serif !important; }
+.invitation-text-faulmann { font-family: "Novia Faulmann", var(--font-noto-serif-armenian), serif !important; }
+.invitation-text-arti { font-family: "Novia Arti", var(--font-noto-serif-armenian), serif !important; }
+.invitation-text-dzeragir { font-family: "Novia Dzeragir", var(--font-noto-serif-armenian), serif !important; }
+.invitation-text-miami { font-family: "Novia Miami", var(--font-noto-serif-armenian), serif !important; }
+.invitation-text-mahacu { font-family: "Novia Mahacu", var(--font-noto-serif-armenian), serif !important; }
+.invitation-text-xarrovv { font-family: "Novia Xarrovv", var(--font-noto-serif-armenian), serif !important; }
+.invitation-text-alex-brush { font-family: var(--font-alex-brush), var(--font-noto-serif-armenian), cursive !important; }
+.invitation-text-allura { font-family: var(--font-allura), var(--font-noto-serif-armenian), cursive !important; }
+.invitation-text-bodoni { font-family: var(--font-bodoni-moda), var(--font-noto-serif-armenian), serif !important; }
+.invitation-text-cinzel { font-family: var(--font-cinzel), var(--font-noto-serif-armenian), serif !important; }
+.invitation-text-cormorant { font-family: var(--font-cormorant), var(--font-noto-serif-armenian), serif !important; }
+.invitation-text-great-vibes { font-family: var(--font-great-vibes), var(--font-noto-serif-armenian), cursive !important; }
+.invitation-text-marcellus { font-family: var(--font-marcellus), var(--font-noto-serif-armenian), serif !important; }
+.invitation-text-parisienne { font-family: var(--font-parisienne), var(--font-noto-serif-armenian), cursive !important; }
+.invitation-text-playfair { font-family: var(--font-playfair), var(--font-noto-serif-armenian), serif !important; }
+.invitation-text-sacramento { font-family: var(--font-sacramento), var(--font-noto-serif-armenian), cursive !important; }
