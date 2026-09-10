@@ -1,0 +1,65 @@
+import { fireEvent, render, screen } from "@testing-library/react";
+import { beforeEach, describe, expect, it, vi } from "vitest";
+import { invitationTemplates } from "@/lib/invitation-templates";
+import { InvitationCustomizer } from "./invitation-customizer";
+
+describe("InvitationCustomizer", () => {
+  beforeEach(() => {
+    vi.stubGlobal("fetch", vi.fn().mockResolvedValue({ ok: true }));
+  });
+
+  it("updates names and venue in the live preview", () => {
+    render(<InvitationCustomizer template={invitationTemplates[0]} />);
+    fireEvent.change(screen.getByLabelText("Partner one"), { target: { value: "Ani" } });
+    fireEvent.click(screen.getByRole("combobox", { name: "Invitation font" }));
+    fireEvent.mouseEnter(screen.getByRole("option", { name: "Great Vibes" }));
+    expect(document.querySelector(".invitation-font-great-vibes")).toBeInTheDocument();
+    fireEvent.mouseLeave(screen.getByRole("listbox"));
+    expect(document.querySelector(".invitation-font-editorial")).toBeInTheDocument();
+    fireEvent.click(screen.getByRole("option", { name: "Noto Serif" }));
+    fireEvent.change(screen.getAllByLabelText("Venue")[0], { target: { value: "Sevan Monastery" } });
+    fireEvent.change(screen.getByLabelText("RSVP message"), { target: { value: "Please celebrate with us in Yerevan." } });
+    expect(screen.getAllByText("Ani").length).toBeGreaterThan(0);
+    expect(screen.getByRole("combobox", { name: "Invitation font" })).toHaveTextContent("Noto Serif");
+    expect(screen.getByText("Sevan Monastery")).toBeInTheDocument();
+    expect(screen.getByText("Please celebrate with us in Yerevan.")).toBeInTheDocument();
+    const inlinePartnerTwo = screen.getByRole("textbox", { name: "Edit partner two in preview" });
+    fireEvent.input(inlinePartnerTwo, { target: { textContent: "Aram" } });
+    fireEvent.blur(inlinePartnerTwo);
+    expect(screen.getByLabelText("Partner two")).toHaveValue("Aram");
+    const inlineWelcome = screen.getByRole("textbox", { name: "Edit welcome message" });
+    fireEvent.input(inlineWelcome, { target: { textContent: "Սիրով հրավիրում ենք ձեզ։" } });
+    fireEvent.blur(inlineWelcome);
+    expect(screen.getByLabelText("Welcome message")).toHaveValue("Սիրով հրավիրում ենք ձեզ։");
+    fireEvent.focus(screen.getByRole("textbox", { name: "Edit welcome message" }));
+    expect(screen.getByRole("dialog", { name: "Text formatting" })).toBeInTheDocument();
+    expect(screen.queryByText("Formatting")).not.toBeInTheDocument();
+    fireEvent.click(screen.getByRole("combobox", { name: "Selected text font" }));
+    fireEvent.mouseEnter(screen.getByRole("option", { name: "Great Vibes" }));
+    expect(document.querySelector(".invitation-text-great-vibes")).toBeInTheDocument();
+    expect(inlineWelcome.closest("[data-inline-text-host]")).toHaveAttribute("data-preview-locked", "true");
+    fireEvent.mouseLeave(screen.getByRole("listbox"));
+    expect(document.querySelector(".invitation-text-great-vibes")).not.toBeInTheDocument();
+    expect(inlineWelcome.closest("[data-inline-text-host]")).not.toHaveAttribute("data-preview-locked");
+    fireEvent.click(screen.getByRole("option", { name: "Noto Serif" }));
+    fireEvent.click(screen.getByRole("button", { name: "Bold" }));
+    expect(screen.getByRole("button", { name: "Bold" })).toHaveAttribute("aria-pressed", "true");
+    fireEvent.pointerDown(screen.getByText("The celebration").closest("section")!);
+    expect(screen.queryByRole("dialog", { name: "Text formatting" })).not.toBeInTheDocument();
+    const inlineClosing = screen.getByRole("textbox", { name: "Edit closing message" });
+    const previousClosing = inlineClosing.textContent;
+    inlineClosing.textContent = "";
+    fireEvent.blur(inlineClosing);
+    expect(inlineClosing).toHaveTextContent(previousClosing!);
+    fireEvent.focus(inlineClosing);
+    expect(screen.getByRole("dialog", { name: "Text formatting" })).toBeInTheDocument();
+    fireEvent.pointerDown(screen.getByText("The celebration").closest("section")!);
+    fireEvent.click(screen.getByRole("button", { name: "Hide editor sidebar" }));
+    expect(screen.getByRole("button", { name: "Save changes from preview" })).toBeInTheDocument();
+    expect(screen.getByRole("button", { name: "Show editor sidebar" })).toBeInTheDocument();
+    fireEvent.click(screen.getByRole("button", { name: "Show editor sidebar" }));
+    expect(screen.getByLabelText("Partner one")).toBeVisible();
+    fireEvent.click(screen.getByRole("button", { name: "Mobile view" }));
+    expect(screen.getByRole("button", { name: "Mobile view" })).toHaveAttribute("aria-pressed", "true");
+  });
+});
